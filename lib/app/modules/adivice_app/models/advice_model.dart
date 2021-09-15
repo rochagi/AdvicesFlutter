@@ -1,5 +1,5 @@
 class AdviceModel {
-  Slip slip;
+  Slip? slip;
 
   AdviceModel({this.slip});
 
@@ -10,21 +10,24 @@ class AdviceModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.slip != null) {
-      data['slip'] = this.slip.toJson();
+      data['slip'] = this.slip!.toJson();
     }
     return data;
   }
+
+  @override
+  String toString() => 'AdviceModel(slip: $slip)';
 }
 
 class Slip {
-  int id;
-  String advice;
+  int? id;
+  String? advice;
 
-  Slip({this.id, this.advice});
+  Slip({required this.id, required this.advice});
 
   Slip.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    advice = json['advice'];
+    id = json['id'] ?? 0;
+    advice = json['advice'] ?? " ";
   }
 
   Map<String, dynamic> toJson() {
@@ -33,4 +36,7 @@ class Slip {
     data['advice'] = this.advice;
     return data;
   }
+
+  @override
+  String toString() => 'Slip(id: $id, advice: $advice)';
 }
